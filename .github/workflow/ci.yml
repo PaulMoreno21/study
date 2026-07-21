@@ -1,0 +1,21 @@
+name: CI/CD workflow
+on: 
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+jobs: 
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: clonar repositorio
+        uses: actions/checkout@v3 
+      - name: configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: instalar dependencias
+        run: npm install
+      - name: ejecutar pruebas
+        run: npm test
+  
